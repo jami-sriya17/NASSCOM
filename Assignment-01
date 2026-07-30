@@ -1,0 +1,558 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPVsj8O6WEpAy/KJ+Z/CUhV",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/jami-sriya17/NASSCOM/blob/main/Assignment-01\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "1.Remove duplicates and find second largest element in a list without using sort()"
+      ],
+      "metadata": {
+        "id": "XMtEvodVF2sS"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def remove_duplicates(lst):\n",
+        "    return list(set(lst))\n",
+        "def second_largest(lst):\n",
+        "    lst = remove_duplicates(lst)\n",
+        "    largest = max(lst)\n",
+        "    second_largest = min(lst)\n",
+        "    for i in lst:\n",
+        "        if i > second_largest and i < largest:\n",
+        "            second_largest = i\n",
+        "    return lst[-2]"
+      ],
+      "metadata": {
+        "id": "oghHmQadKMhD"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "second_largest([12,45,23,45,67,12])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "dtXhWXOtMVzL",
+        "outputId": "7c389409-e89e-4fff-89b2-a7546cff1e13"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "45"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 4
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2.Find the frequency of each element in a list without using the count() method"
+      ],
+      "metadata": {
+        "id": "Igh8jURHN5K3"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def frequency(lst):\n",
+        "    freq = {}\n",
+        "    for i in lst:\n",
+        "        if i in freq:\n",
+        "            freq[i] += 1\n",
+        "        else:\n",
+        "            freq[i] = 1\n",
+        "    return freq\n"
+      ],
+      "metadata": {
+        "id": "4QPFqt3nUKDC"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "frequency([1,5,4,3,4,9,10,10])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ixoJ0Ae6UU98",
+        "outputId": "bb9ffea8-f998-46cc-d98b-8444b8669d92"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "{1: 1, 5: 1, 4: 2, 3: 1, 9: 1, 10: 2}"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 7
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "3.Rotate a list by k positions to the right"
+      ],
+      "metadata": {
+        "id": "0dG0upR1Ui_9"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def rotate(lst,k):\n",
+        "    return lst[-k:]+lst[:-k]"
+      ],
+      "metadata": {
+        "id": "s_tOwUQAVpyk"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "rotate([1,2,3,4,5],3)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "vy1R2WHucKP8",
+        "outputId": "ba1a960f-1269-4537-e670-b263d5492f49"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[3, 4, 5, 1, 2]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 10
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "4.Given a list of integers and a target value,find all pairs whose sum  equal to target"
+      ],
+      "metadata": {
+        "id": "1htPgEtOAidU"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def find_pairs(lst, target):\n",
+        "    seen =[]\n",
+        "    pair = []\n",
+        "    for num in lst:\n",
+        "        complement = target - num\n",
+        "        if complement in seen:\n",
+        "            pair.append((num,complement))\n",
+        "        seen.append(num)\n",
+        "    return pair"
+      ],
+      "metadata": {
+        "id": "UMJ9FEqlDf6J"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "find_pairs([10,12,14,4,20], 24)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "0OY_RpfjHnVO",
+        "outputId": "9b40ccbc-2220-40b7-fa0b-5fa46a586cfb"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[(14, 10), (20, 4)]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 5
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "##5. Pair Sum\n",
+        "Given a list of integers and a target value, find all pairs whose sum equals the target.\n"
+      ],
+      "metadata": {
+        "id": "pPGyaBHhLXWX"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def pairsum(a, target):\n",
+        "    for i in range(len(a)):\n",
+        "        for j in range(i + 1, len(a)):\n",
+        "            if a[i] + a[j] == target:\n",
+        "                print(a[i], a[j])"
+      ],
+      "metadata": {
+        "id": "UGZHmZ-TM7LB"
+      },
+      "execution_count": 6,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "pairsum([1,2,3,4,5,6,7,8],9)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "wHF0stj1NjkY",
+        "outputId": "17ffde3d-9fa5-41c9-f794-ac8766f7e255"
+      },
+      "execution_count": 7,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "1 8\n",
+            "2 7\n",
+            "3 6\n",
+            "4 5\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "##6. Longest Consecutive Sequence\n",
+        "Given an unsorted list, find the length of the longest consecutive sequence.\n",
+        "Example: [100,4,200,1,3,2] -> 4\n"
+      ],
+      "metadata": {
+        "id": "7PJ3vPUFOAD_"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def consecutive(a):\n",
+        "    s = set(a)\n",
+        "    longest = 0\n",
+        "    for i in s:\n",
+        "        if i - 1 not in s:\n",
+        "            count = 1\n",
+        "            while i + count in s:\n",
+        "                count += 1\n",
+        "            if count > longest:\n",
+        "                longest = count\n",
+        "    print(longest)\n"
+      ],
+      "metadata": {
+        "id": "_Hcu9klWOFlr"
+      },
+      "execution_count": 8,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "consecutive([1,45,3,46,55,47,31,44,48])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "mFPhT6JfOohj",
+        "outputId": "7ef5808e-9911-445f-d932-fa183df54ba0"
+      },
+      "execution_count": 10,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "5\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "##7. Matrix Operations using Nested Lists\n",
+        "Read two matrices using nested lists and perform matrix addition, subtraction, and multiplication.\n"
+      ],
+      "metadata": {
+        "id": "M1sKFlcGO5ud"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "A = [[1, 2], [3, 4]]\n",
+        "B = [[5, 6], [7, 8]]\n",
+        "\n",
+        "# Addition\n",
+        "print(\"Addition:\")\n",
+        "for i in range(2):\n",
+        "    print([A[i][j] + B[i][j] for j in range(2)])\n",
+        "\n",
+        "# Subtraction\n",
+        "print(\"Subtraction:\")\n",
+        "for i in range(2):\n",
+        "    print([A[i][j] - B[i][j] for j in range(2)])\n",
+        "\n",
+        "# Multiplication\n",
+        "print(\"Multiplication:\")\n",
+        "C = [[0, 0], [0, 0]]\n",
+        "\n",
+        "for i in range(2):\n",
+        "    for j in range(2):\n",
+        "        for k in range(2):\n",
+        "            C[i][j] += A[i][k] * B[k][j]\n",
+        "\n",
+        "for row in C:\n",
+        "    print(row)"
+      ],
+      "metadata": {
+        "id": "O0oaghY1OIOI"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "##8. Spiral Traversal\n",
+        "Given an N×N matrix stored as nested lists, print the elements in spiral order.\n"
+      ],
+      "metadata": {
+        "id": "WfIfqsRHOQP3"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def spiral(lst):\n",
+        "    top, bottom = 0, len(lst)-1\n",
+        "    left, right = 0, len(lst[0])-1\n",
+        "\n",
+        "    while top <= bottom and left <= right:\n",
+        "        for i in range(left, right+1):\n",
+        "            print(lst[top][i], end=\" \")\n",
+        "        top += 1\n",
+        "\n",
+        "        for i in range(top, bottom+1):\n",
+        "            print(lst[i][right], end=\" \")\n",
+        "        right -= 1\n",
+        "\n",
+        "        for i in range(right, left-1, -1):\n",
+        "            print(lst[bottom][i], end=\" \")\n",
+        "        bottom -= 1\n",
+        "\n",
+        "        for i in range(bottom, top-1, -1):\n",
+        "            print(lst[i][left], end=\" \")\n",
+        "        left += 1"
+      ],
+      "metadata": {
+        "id": "X1wgXZnAQnU1"
+      },
+      "execution_count": 17,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "spiral([[1,2,3],[4,5,6],[7,8,9]])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "et80tlIyRdX2",
+        "outputId": "4a3ffed5-ffdc-4875-d38e-d0e82a572a68"
+      },
+      "execution_count": 18,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "1 2 3 6 9 8 7 4 5 "
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "##9. Majority Element\n",
+        "Determine whether a list contains a majority element (appearing more than n/2 times). Print the element or 'No Majority Element'.\n"
+      ],
+      "metadata": {
+        "id": "W2Z_doiEOgCa"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def majority(lst):\n",
+        "    found = False\n",
+        "    for i in lst:\n",
+        "        if lst.count(i) > len(lst)//2:\n",
+        "            print(i)\n",
+        "            found = True\n",
+        "            break\n",
+        "    if not found:\n",
+        "        print(\"No majority element\")"
+      ],
+      "metadata": {
+        "id": "mwKFUwuYR1Xs"
+      },
+      "execution_count": 25,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "majority([1,6,5,6,6])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "vCjhFsvGSlmV",
+        "outputId": "86dbf817-7947-4881-8494-3a19b50658e9"
+      },
+      "execution_count": 27,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "6\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "##10. Stock Buy and Sell\n",
+        "Given daily stock prices, determine the maximum profit possible by buying once and selling once.\n"
+      ],
+      "metadata": {
+        "id": "RZDThv9zOuDm"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def stocks(lst):\n",
+        "    max_profit = 0\n",
+        "    for i in range(len(lst)):\n",
+        "        for j in range(i+1, len(lst)):\n",
+        "            profit = lst[j] - lst[i]\n",
+        "            if profit > max_profit:\n",
+        "                max_profit = profit\n",
+        "    return profit"
+      ],
+      "metadata": {
+        "id": "zUS_8IpwXquV"
+      },
+      "execution_count": 31,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "stocks([74, 11, 56, 3, 66, 444])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "d_03uDYLX4GF",
+        "outputId": "322455c2-7dfb-4025-c126-244631773dc2"
+      },
+      "execution_count": 37,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "378"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 37
+        }
+      ]
+    }
+  ]
+}
